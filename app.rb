@@ -2,8 +2,11 @@ require('sinatra')
 require('sinatra/reloader')
 require('./lib/album')
 require('pry')
+require('pg')
 require('./lib/song')
 also_reload('lib/**/*.rb')
+
+DB = PG.connect({:dbname => "record_store"})
 
 get('/') do
   @albums = Album.all
